@@ -25,6 +25,7 @@ public class UtenteController {
 	private UtenteService utenteService;
 
 	@GetMapping
+//	@PreAuthorize
 	public ResponseEntity<List<Utente>> getUtenti() {
 		List<Utente> listaUtenti = utenteService.find();
 		if (!listaUtenti.isEmpty()) {

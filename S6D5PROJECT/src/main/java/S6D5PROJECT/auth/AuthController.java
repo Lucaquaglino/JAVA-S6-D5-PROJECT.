@@ -40,16 +40,15 @@ public class AuthController {
 		// VERIFICO CHE L'EMAIL DELL'UTENTE SIA PRESENTE SUL DB
 		Utente u = utenteService.findByEmail(body.getEmail());
 
-		String plainPW = body.getPassword();
+		String insertPW = body.getPassword();
 		String hashedPW = u.getPassword();
 
-		if (!bcrypt.matches(plainPW, hashedPW))
+		if (!bcrypt.matches(insertPW, hashedPW))
 			throw new UnauthorizedException("Credenziali non valide");
 
 		// GENERO IL TOKEN
 		String token = JWTTools.createToken(u);
 
-		// ALTRIMENTI -> 401 CREDENZIALI NON VALIDE
 		return new ResponseEntity<>(new AuthenticationSuccessfullPayload(token), HttpStatus.OK);
 	}
 
