@@ -6,16 +6,18 @@ import java.util.Base64;
 import javax.crypto.Cipher;
 import javax.crypto.spec.SecretKeySpec;
 
+import jakarta.persistence.Converter;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import jakarta.persistence.AttributeConverter;
 
 @Component
+@Converter
 public class ModelloConverter implements AttributeConverter<String, String> {
 
 	private static final String ALGORITHM = "AES/ECB/PKCS5Padding";
-	@Value("${encryption.secret}")
+	@Value("PLL9KDLP467QJYCH8X8MYZLP1HK1J3Z6")
 	private String secret;
 
 	@Override
